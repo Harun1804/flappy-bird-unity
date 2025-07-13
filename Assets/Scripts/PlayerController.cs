@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private GameObject _menu;
+    [SerializeField] private float _rotationMultiplier = 2f; // Adjust this value to control the rotation speed
 
     private Rigidbody2D rb;
 
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocityY = jumpForce; // Set the vertical velocity to jumpForce
         }
 
-        transform.rotation = Quaternion.Euler(0, 0, rb.linearVelocity.y); // Rotate the player based on vertical velocity
+        transform.rotation = Quaternion.Euler(0, 0, rb.linearVelocity.y * _rotationMultiplier); // Rotate the player based on vertical velocity
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
