@@ -3,8 +3,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private GameObject _menu;
 
     private Rigidbody2D rb;
+
+    public bool IsAlive {
+        get { return gameObject.activeSelf; }
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,5 +26,6 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         gameObject.SetActive(false); // Deactivate the obstacle on collision
+        _menu.SetActive(true); // Show the menu when the player collides with an obstacle
     }
 }
